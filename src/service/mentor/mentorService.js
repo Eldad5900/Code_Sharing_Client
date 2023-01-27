@@ -1,11 +1,9 @@
-const API_URL = "http://localhost:3003/user";
+const API_URL =
+  "https://main--code-sharing-server.netlify.app/.netlify/functions/server";
 
 export class MentorService {
-  
-    async getAllCodesBlock() {
-    return fetch(`${API_URL}/getAll`)
-      .then(this.success)
-      .catch(this.failure);
+  async getAllCodesBlock() {
+    return fetch(`${API_URL}/getAll`).then(this.success).catch(this.failure);
   }
 
   async addCodeBlock(codeBlock) {
@@ -18,12 +16,12 @@ export class MentorService {
     })
       .then(this.success)
       .catch(this.failure);
-    }
+  }
 
-  async getCodeById(codeId){
+  async getCodeById(codeId) {
     return fetch(`${API_URL}/get-codeBlock-by-id/${codeId}`)
-    .then(this.success)
-    .catch(this.failure);
+      .then(this.success)
+      .catch(this.failure);
   }
 
   async editBlockCode(code, codeId) {
@@ -32,7 +30,7 @@ export class MentorService {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({code}),
+      body: JSON.stringify({ code }),
     })
       .then(this.success)
       .catch(this.failure);

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3003/user";
+const API_URL = "https://main--code-sharing-server.netlify.app/.netlify/functions/server";
 
 export class UserService {
     
