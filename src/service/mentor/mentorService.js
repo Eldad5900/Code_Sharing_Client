@@ -1,5 +1,4 @@
-const API_URL =
-  "https://main--code-sharing-server.netlify.app/.netlify/functions/server";
+const API_URL = "https://main--code-sharing-server.netlify.app/.netlify/functions/server";
 
 export class MentorService {
   async getAllCodesBlock() {
