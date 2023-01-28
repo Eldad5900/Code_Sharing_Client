@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3003/.netlify/functions/api";
+const API_URL = "https://code-sharing-server.netlify.app/.netlify/functions/api";
 
 export class MentorService {
   async getAllCodesBlock() {
@@ -16,7 +16,7 @@ export class MentorService {
       .then(this.success)
       .catch(this.failure);
   }
-
+  
   async getCodeById(codeId) {
     return fetch(`${API_URL}/get-codeBlock-by-id/${codeId}`)
       .then(this.success)
