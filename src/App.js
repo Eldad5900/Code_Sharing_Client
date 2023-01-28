@@ -7,7 +7,7 @@ import { AddIteam } from "./views/addIteam/addIteam";
 function App() {  
   return (
     <div className="App">
-      <Routes>
+           <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/SharingPage/:id" element={<SharingPage/>}></Route>
         <Route path="/AddCodeBlock" element={<AddIteam/>}></Route>
