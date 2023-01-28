@@ -23,7 +23,7 @@ export const Home = () => {
   };
 
   const goToCodeBlock = (codeBlock) => {
-    navigate(`/SharingPage/${codeBlock._id}`);
+    navigate(`/.netlify/functions/api/SharingPage/${codeBlock._id}`);
   };
 
   return (
@@ -41,7 +41,7 @@ export const Home = () => {
           </div>
         ))}
         <div>
-        <button  onClick={() => navigate("/AddCodeBlock")}>Add CodeBlock</button>
+        <button  onClick={() => navigate("/.netlify/functions/api/AddCodeBlock")}>Add CodeBlock</button>
         </div>
     </>
   );

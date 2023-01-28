@@ -7,10 +7,10 @@ import { AddIteam } from "./views/addIteam/addIteam";
 function App() {  
   return (
     <div className="App">
-           <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/SharingPage/:id" element={<SharingPage/>}></Route>
-        <Route path="/AddCodeBlock" element={<AddIteam/>}></Route>
+      <Routes>
+        <Route path="/.netlify/functions/api/" element={<Home />}></Route>
+        <Route path="/.netlify/functions/api/SharingPage/:id" element={<SharingPage/>}></Route>
+        <Route path="/.netlify/functions/api/AddCodeBlock" element={<AddIteam/>}></Route>
       </Routes>
     </div>
   );
