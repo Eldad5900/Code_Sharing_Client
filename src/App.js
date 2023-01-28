@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/.netlify/functions/api/" element={<Home />}></Route>
-        <Route path="/.netlify/functions/api/SharingPage/:id" element={<SharingPage/>}></Route>
-        <Route path="/.netlify/functions/api/AddCodeBlock" element={<AddIteam/>}></Route>
+        <Route path="https://code-sharing-client.netlify.app/" element={<Home />}></Route>
+        <Route path="https://code-sharing-client.netlify.app/SharingPage/:id" element={<SharingPage/>}></Route>
+        <Route path="https://code-sharing-client.netlify.app/AddCodeBlock" element={<AddIteam/>}></Route>
       </Routes>
     </div>
   );
