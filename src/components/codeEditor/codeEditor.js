@@ -16,7 +16,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
   const mentorService = new MentorService();
 
   useEffect(() => {
-    const socket = io.connect("http://localhost:3003/", {
+    const socket = io.connect("https://codesharing.herokuapp.com/", {
       transports: ["websocket"],
     });
     setSocket(socket);
