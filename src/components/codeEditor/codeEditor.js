@@ -9,7 +9,7 @@ import { AiOutlineSmile } from "react-icons/ai";
 
 export const MyCodeEditor = ({ codeBlock }) => {
   const [socket, setSocket] = useState(null);
-  const [DataCodeBlock, setDataCodeBlock] = useState({});
+  const [dataCodeBlock, setDataCodeBlock] = useState({});
   const [mentor, setMentor] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [answer, setAnswer] = useState("");
@@ -24,7 +24,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
       setMentor(data.isMentor);
     });
     socket.on("new-remote-operatios", (data) => {
-      const updatedCode = { ...DataCodeBlock, code: data };
+      const updatedCode = { ...dataCodeBlock, code: data };
       setDataCodeBlock((pre) => {
         pre.code = updatedCode.code;
         return { ...pre };
@@ -40,14 +40,14 @@ export const MyCodeEditor = ({ codeBlock }) => {
   }, []);
 
   useEffect(() => {
-    if (DataCodeBlock?.code === DataCodeBlock?.solution) {
+    if (dataCodeBlock?.code === dataCodeBlock?.solution) {
       console.log("Correct");
       setIsCorrect(true);
     } else {
       console.log("is not Correct");
       setIsCorrect(false);
     }
-  }, [DataCodeBlock]);
+  }, [dataCodeBlock]);
 
   const getTheCodeById = async () => {
     const codeItem = await mentorService.getCodeById(codeBlock);
@@ -61,7 +61,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
 
   return (
     <div>
-      <h1>Topic - javascript : {DataCodeBlock?.type}</h1>
+      <h1>Topic - javascript : {dataCodeBlock?.type}</h1>
 
       <div>
         <AceEditor
@@ -72,7 +72,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
-          value={`${DataCodeBlock?.code}`}
+          value={`${dataCodeBlock?.code}`}
           readOnly={mentor}
           setOptions={{
             enableBasicAutocompletion: false,
@@ -91,7 +91,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
         {mentor ? (
           <div>
             <h1>solution:</h1>
-            <h2>{DataCodeBlock?.solution}</h2>
+            <h2>{dataCodeBlock?.solution}</h2>
           </div>
         ) : (
           <div></div>
