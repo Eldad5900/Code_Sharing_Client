@@ -9,7 +9,7 @@ import { AiOutlineSmile } from "react-icons/ai";
 
 export const MyCodeEditor = ({ codeBlock }) => {
   const [socket, setSocket] = useState(null);
-  const [codeBlockCode, setCodeBlockCode] = useState({});
+  const [DataCodeBlock, setDataCodeBlock] = useState({});
   const [mentor, setMentor] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [answer, setAnswer] = useState("");
@@ -24,10 +24,8 @@ export const MyCodeEditor = ({ codeBlock }) => {
       setMentor(data.isMentor);
     });
     socket.on("new-remote-operatios", (data) => {
-      console.log(data);
-      const updatedCode = { ...codeBlockCode, code: data };
-      console.log(updatedCode);
-      setCodeBlockCode((pre) => {
+      const updatedCode = { ...DataCodeBlock, code: data };
+      setDataCodeBlock((pre) => {
         pre.code = updatedCode.code;
         return { ...pre };
       });
@@ -38,43 +36,43 @@ export const MyCodeEditor = ({ codeBlock }) => {
   }, []);
 
   useEffect(() => {
-    getTheCode();
+    getTheCodeById();
   }, []);
 
   useEffect(() => {
-    if (codeBlockCode?.code === codeBlockCode?.solution) {
+    if (DataCodeBlock?.code === DataCodeBlock?.solution) {
       console.log("Correct");
       setIsCorrect(true);
     } else {
       console.log("is not Correct");
       setIsCorrect(false);
     }
-  }, [codeBlockCode]);
+  }, [DataCodeBlock]);
 
-  const getTheCode = async () => {
+  const getTheCodeById = async () => {
     const codeItem = await mentorService.getCodeById(codeBlock);
-    setCodeBlockCode(codeItem);
+    setDataCodeBlock(codeItem);
   };
 
-  const onChange = async (newValue) => {
+  const codeChange = async (newValue) => {
     const updatedCode = await mentorService.editBlockCode(newValue, codeBlock);
     socket.emit("new-operatios", newValue);
   };
 
   return (
     <div>
-      <h1>Topic - javascript : {codeBlockCode?.type}</h1>
+      <h1>Topic - javascript : {DataCodeBlock?.type}</h1>
 
       <div>
         <AceEditor
           mode="javascript"
           theme="monokai"
-          onChange={onChange}
+          onChange={codeChange}
           fontSize={20}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
-          value={`${codeBlockCode?.code}`}
+          value={`${DataCodeBlock?.code}`}
           readOnly={mentor}
           setOptions={{
             enableBasicAutocompletion: false,
@@ -93,7 +91,7 @@ export const MyCodeEditor = ({ codeBlock }) => {
         {mentor ? (
           <div>
             <h1>solution:</h1>
-            <h2>{codeBlockCode?.solution}</h2>
+            <h2>{DataCodeBlock?.solution}</h2>
           </div>
         ) : (
           <div></div>
